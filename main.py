@@ -11,7 +11,8 @@ green = pygame.Color(0, 255, 50)
 red = pygame.Color(255, 0, 0)
 orange = pygame.Color(255, 165, 0)
 turquoise = pygame.Color(48, 213, 200)
-Snake_speed = 10
+snake_speed = 10
+score = 0
 
 pygame.init()
 pygame.display.set_caption('Snakes')
@@ -40,7 +41,10 @@ def game_over():
 # Task 1: Create a function that displays the score.
 # Utilize pygame.font.SysFont(), score_font.render(), score_surface.get_rect(), and game_window.blit() as in game_over()
 def show_score(choice, color, font, size):
-    return
+    my_font = pygame.font.SysFont('impact', 17)
+    score_surface = my_font.render('current score : ' + str(score), True, turquoise)
+    score_rect = score_surface.get_rect()
+    game_window.blit(score_surface, score_rect)
 
 # Main Function
 while True:
@@ -57,6 +61,20 @@ while True:
 
     # Task 2: According to the change_to variable, adjust the new snake's position. Up: y - 10; Down: y + 10; Left: x - 10; Right: x + 10
     # ___________ # Position Code Here
+    # Change direction to whatever is said in change_to
+    # Adjust snake position values
+    # snake_position = [100, 50] snake_position[0] -> 100
+
+    if change_to == 'UP' and direction != 'DOWN':
+        
+        snake_position[1] = snake_position[1] - 10
+    if change_to == 'DOWN':
+        snake_position[1] = snake_position[1] + 10
+    if change_to == 'LEFT':
+        snake_position[0] = snake_position[0] - 10
+    if change_to == 'RIGHT':
+        snake_position[0] = snake_position[0] + 10
+
 
     # Snake body growing mechanism
     snake_body.insert(0, list(snake_position))
@@ -68,13 +86,11 @@ while True:
     # Task 4: If fruit spawn is false, spawn a new fruit and set fruit_spawn to true
     if not fruit_spawn:
         # ___________ # Code here
-
+        x = 0
     for pos in snake_body:
-        pygame.draw.rect(game_window, green, pygame.Rect(
-          pos[0], pos[1], 10, 10))
+        pygame.draw.rect(game_window, green, pygame.Rect(pos[0], pos[1], 10, 10))
         
-    pygame.draw.rect(game_window, turquoise, pygame.Rect(
-      fruit_position[0], fruit_position[1], 10, 10))
+    pygame.draw.rect(game_window, red, pygame.Rect(fruit_position[0], fruit_position[1], 10, 10))
 
     # Task 5: Create 3 game-over conditions
     # ______________ # Code Here
