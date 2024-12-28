@@ -1,0 +1,15 @@
+To create a virtual environment:
+    python3 -m venv [name of venv]
+
+To push to github:
+    git status
+    git add .
+    git commit -m "[your message]"
+    git push
+
+Virtual Environment:
+    activate: source venv/bin/activate
+    deactivate: deactivate
+
+Installation:
+    pygame
